@@ -93,6 +93,9 @@
   text-transform: uppercase;
   font-size: 2.4rem;
   line-height: 1.27;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
 
   @media (min-width: $stop-scaling) {
     width: 509px;
@@ -133,6 +136,13 @@
       height: 1.1rem;
     }
   }
+}
+
+.screen:not(.screen--hidden) .intro__message {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition: all 260ms ease 1100ms;
 }
 
 .intro__label {
