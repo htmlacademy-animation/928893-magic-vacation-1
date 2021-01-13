@@ -241,6 +241,7 @@
     display: block;
     color: inherit;
     padding: 0 0.5em 0.5em;
+    transition: color 270ms ease;
 
     &::after {
       content: "";
@@ -249,8 +250,10 @@
       width: 100%;
       height: 2px;
       background-color: $c-light;
-      display: none;
+      transform: scaleX(0);
       left: 0;
+      transition: transform 270ms ease;
+      transform-origin: 100%;
 
       @media (max-width: $tablet) and (orientation: portrait) {
         left: 0;
@@ -265,10 +268,9 @@
       }
     }
 
-    &.active {
-      &::after {
-        display: block;
-      }
+    &.active::after,
+    &:hover::after {
+      transform: scaleX(1);
     }
 
     &:hover,
@@ -279,6 +281,7 @@
       &::after {
         opacity: 1;
         background-color: $c-purple;
+        transform-origin: 0;
       }
     }
   }
