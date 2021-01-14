@@ -32,14 +32,12 @@ export default class FullPageScroll {
     const newIndex = Array.from(this.screenElements).findIndex((screen) => location.hash.slice(1) === screen.id);
     const prev = this.activeScreen;
     this.activeScreen = (newIndex < 0) ? 0 : newIndex;
-    if (this.activeScreen >= 2) {
-      if (prev < 2) {
-        this.screenDelay = 600;
-      }
+    if (this.activeScreen >= 2 && prev < 2) {
+      this.screenDelay = 600;
       document.body.classList.add(`show-veil`);
+      setTimeout(()=>document.body.classList.remove(`show-veil`), this.screenDelay + 1);
     } else {
       this.screenDelay = 0;
-      document.body.classList.remove(`show-veil`);
     }
     this.changePageDisplay();
   }
@@ -58,6 +56,7 @@ export default class FullPageScroll {
       });
       this.screenElements[this.activeScreen].classList.remove(`screen--hidden`);
       this.screenElements[this.activeScreen].classList.add(`active`);
+      this.screenDelay = 0;
     }, this.screenDelay);
   }
 
